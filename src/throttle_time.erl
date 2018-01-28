@@ -14,7 +14,8 @@ interval(per_hour) ->
 interval(per_minute) ->
   1000 * 60;
 interval(per_second) ->
-  1000.
+  1000;
+interval(I) when is_integer(I), I > 1000 -> I.
 
 next_reset(Period, Previous) ->
   interval(Period) - (throttle_time:now() - Previous).
